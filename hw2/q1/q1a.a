@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS trade
+
+CREATE TABLE trade(stocksymbol INT, time INT, quantity INT, price INT)
+
+LOAD DATA INFILE "trade.csv" INTO TABLE trade FIELDS TERMINATED BY ","
+
+select stocksymbol, sum(quantity * price) / sum(quantity)  as avg_price
+from trade
+assuming asc stocksymbol
+group by stocksymbol
+into outfile "q1a.csv"
+fields terminated by ","

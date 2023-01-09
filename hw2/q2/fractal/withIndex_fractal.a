@@ -1,0 +1,7 @@
+<sql>
+select now();
+create index price_stock_fractal on trade(price, stocksymbol);
+select distinct stocksymbol
+from trade;
+select now();
+</sql>

@@ -1,0 +1,5 @@
+select stocksymbol, max(price - mins(price)) as max_profit
+from trade
+assuming asc stocksymbol
+group by stocksymbol
+

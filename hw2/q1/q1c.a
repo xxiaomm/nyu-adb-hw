@@ -1,0 +1,6 @@
+select stocksymbol, avgs(10, quantity * price) / avgs(10, quantity) as weighted_moving
+from trade
+assuming asc stocksymbol, asc time
+group by stocksymbol
+into outfile "q1c.csv"
+fields terminated by ","

@@ -1,0 +1,7 @@
+<sql>
+select now();
+create index price_stock_uniform on trade(price, stocksymbol);
+select distinct stocksymbol
+from tradeUniform;
+select now();
+</sql>

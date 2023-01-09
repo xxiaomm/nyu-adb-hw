@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS ticks
+CREATE TABLE ticks(id int, date int, endofdayprice int)
+
+LOAD DATA INFILE "data/ticks.csv" INTO TABLE TICKS FIELDS TERMINATED BY ","
+
+
+SELECT id, max(ratios(endofdayprice)) as max_return, 
+    min(ratios(endofdayprice)) as min_return FROM ticks 
+ASSUMING ASC id, ASC date 
+GROUP BY id 

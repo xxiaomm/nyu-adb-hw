@@ -1,0 +1,6 @@
+<sql>
+select now();
+select distinct stocksymbol
+from trade;
+select now();
+</sql>

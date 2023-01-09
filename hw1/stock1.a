@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS ticks1
+CREATE TABLE ticks1(ID varchar(20), timestamp int, tradeDate date, price int)
+
+LOAD DATA INFILE "data/ticks1.csv" INTO TABLE TICKS FIELDS TERMINATED BY ","
+
+select id form ticks1
+
+select max(price - mins(price)) from ticks1 assuming asc timestamp where ID = "S" and tradeDate = '10-10-22'

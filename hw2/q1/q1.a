@@ -1,0 +1,32 @@
+DROP TABLE IF EXISTS trade
+
+CREATE TABLE trade(stocksymbol INT, time INT, quantity INT, price INT)
+
+LOAD DATA INFILE "trade.csv" INTO TABLE trade FIELDS TERMINATED BY ","
+
+select stocksymbol, sum(quantity * price) / sum(quantity)  as avg_price
+from trade
+assuming asc stocksymbol
+group by stocksymbol
+into outfile "q1a.csv"
+fields terminated by ","
+
+select stocksymbol, avgs(10, price) as unweighted_moving 
+from trade 
+assuming asc stocksymbol 
+group by stocksymbol
+into outfile "q1b.csv" 
+fields terminated by ","
+
+select stocksymbol, avgs(10, quantity * price) / avgs(10, quantity) as weighted_moving
+from trade
+assuming asc stocksymbol, asc time
+group by stocksymbol
+into outfile "q1c.csv"
+fields terminated by ","
+
+select stocksymbol, max(price - mins(price)) as max_profit
+from trade
+assuming asc stocksymbol
+group by stocksymbol
+

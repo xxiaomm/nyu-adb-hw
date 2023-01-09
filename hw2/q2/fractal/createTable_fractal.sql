@@ -1,0 +1,10 @@
+DROP TABLE IF EXISTS trade
+
+CREATE TABLE trade (
+    stocksymbol INT,
+    time INT,
+    quantity INT,
+    price INT
+);
+
+LOAD DATA INFILE 'trade.csv' INTO TABLE trade fields terminated by ',';

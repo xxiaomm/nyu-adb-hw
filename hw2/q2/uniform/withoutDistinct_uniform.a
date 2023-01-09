@@ -1,0 +1,6 @@
+<sql>
+select now();
+select time
+from tradeUniform;
+select now();
+</sql>

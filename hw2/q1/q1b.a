@@ -1,0 +1,6 @@
+select stocksymbol, avgs(10, price) as unweighted_moving 
+from trade 
+assuming asc stocksymbol 
+group by stocksymbol
+into outfile "q1b.csv" 
+fields terminated by ","
